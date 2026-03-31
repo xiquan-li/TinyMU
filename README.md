@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```
 
 ## Quick Start 
-Run
+Run the following command to try out the TinyMU model: 
 ```
 python demo.py --audio_path ./resource/example1.wav --prompt "Describe the music you hear."
 ```
