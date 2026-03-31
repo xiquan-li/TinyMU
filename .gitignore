@@ -1,0 +1,17 @@
+*.json
+*.csv
+*.pyc
+*.ckpt
+*.pyc
+*.pt
+exps/
+wandb/
+data_backup/
+weights/
+__pycache__/
+create_metadata/
+ckpt/
+!ckpt/.gitkeep
+eval/
+data/*
+!data/MC/MusicCaps_train.json

@@ -1,0 +1,122 @@
+data:
+    train_json_files: [
+        # MC
+        "data/MC/MusicCaps_train.json",         # first metadata 
+        "data/MC/LP_MusicCaps_MC_train.json",   # second metadata
+        "data/MC/MusicCapsBinary.json",         # third metadata 
+        "data/MC/MusicCapsMCQ.json", 
+        "data/MC/MusicCapsDetailQA.json", 
+        "data/MC/MusicInstruct_train.json", 
+        "data/MC_NEW/MusicCapsMCQ.json",  # new 
+
+        # MTT
+        "data/MTT/LP_MusicCaps_MTT_train.json",
+        "data/MTT/MTT_Binary.json", 
+        "data/MTT/MTT_MCQ.json", 
+        "data/MTT/OpenMU_MTT_train.json",  
+        "data/MTT_NEW/MTT_MCQ.json",  # new 
+
+        # ASM
+        "data/ASM_NEW/AudioSetMusicBinary.json", 
+        "data/ASM_NEW/AudioSetMusicMCQ.json", 
+        "data/ASM_NEW/AudioSetMusicQA.json", 
+        "data/ASM_NEW/Captioning.json",
+
+        # FMA
+        "data/FMA/FMA_Caption_Train.json",
+        "data/FMA/FMA_QA_MIX.json",
+        "data/FMA/FMA_QA_MIX_Part2.json"
+    ]
+    train_audio_dirs: [
+        # MC
+        "../../data/LP_MusicCaps_MC/Audio",  # path to first dataset 
+        "../../data/LP_MusicCaps_MC/Audio",  # path to second dataset 
+        "../../data/LP_MusicCaps_MC/Audio",  # path to third dataset
+        "../../data/LP_MusicCaps_MC/Audio",
+        "../../data/LP_MusicCaps_MC/Audio",
+        "../../data/LP_MusicCaps_MC/Audio",
+        "../../data/LP_MusicCaps_MC/Audio",
+
+        # MTT
+        "../../data/LP_MusicCaps_MTT/Audio", 
+        "../../data/LP_MusicCaps_MTT/Audio", 
+        "../../data/LP_MusicCaps_MTT/Audio", 
+        "../../data/LP_MusicCaps_MTT/Audio", 
+        "../../data/LP_MusicCaps_MTT/Audio", 
+
+        # ASM
+        "../../data/AudioSet/data/audio", 
+        "../../data/AudioSet/data/audio", 
+        "../../data/AudioSet/data/audio", 
+        "../../data/AudioSet/data/audio", 
+
+        # FMA
+        "../../data/fma_dataset/fma_split_15s",
+        "../../data/fma_dataset/fma_split_15s",
+        "../../data/fma_dataset/fma_split_15s",
+    ]
+
+    val_json_files: [
+        "data/captioning/MusicCaps_test.json"
+    ]
+    val_audio_dirs: [
+        "../../data/LP_MusicCaps_MC/Audio"
+    ]
+
+    sample_rate: 32000
+    max_length: 10
+    tokenizer_type: "HuggingFaceTB/SmolLM2-135M"
+    max_text_token_len: 129
+    batch_size: 8
+    num_workers: 8
+    wav_aug: False
+    max_data_num: -1
+
+
+model:
+    encoder:
+        audioenc_name: "MATPAC"  # 'HTSAT' / 'Mert' / 'MuQ'
+        matpac_ckpt_path: "./ckpt/matpac_plus_as_48_1_map_enconly.pt"
+        freeze: True
+        ds_rate: 1 
+        c2l_first: True  # cls token first + 32 latent tokens
+        wo_repeat: True  # avoid duplicating htsat latents
+    projector: 
+        proj_name: linearprojector  # linearprojector, reslinearprojector, transformerprojector
+        d_in: 3840  # 768 for HTSAT & Mert, 1024 for MuQ, 3840 for MATPAC
+        d_h: 2048  # only for linear projector
+        d_out: 576
+    decoder:
+        textdec_name: "HuggingFaceTB/SmolLM2-135M"
+        max_text_token_len: 129
+        freeze: False  # set freeze=False for LoRA tuning, LoRA wrapper will automatically freeze the decoder 
+        use_lora: False
+        lora_config: 
+            r: 32
+            lora_alpha: 128  # B*A * (alpha/r)
+            lora_dropout: 0.1
+            bias: "none"
+            target_modules:
+                - "q_proj"
+                - "v_proj"
+    model_type: m2t
+
+
+training:
+    epochs: 15
+    clip_grad: 2
+    dropout: 0.2
+    seed: 42
+    device: "cuda"
+    validation_step: 3000
+
+
+optim_args:
+    lr: !!float 5e-5
+    warmup_steps: 0
+    scheduler: cosine  # [constant, cosine]
+    optimizer_name: "adam"
+    betas: [0.9, 0.999]
+    eps: !!float 1e-8
+    momentum: 0.9
+    warmup_ratio: 0.05
