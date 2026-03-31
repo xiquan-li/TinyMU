@@ -31,7 +31,7 @@ python demo.py --audio_path ./resource/example1.wav --prompt "Describe the music
 ```
 This will automatically download the pretrained TinyMU model to the `./ckpt` folder from the [huggingface repo](https://huggingface.co/AndreasXi/TinyMU), and do the infer. 
 
-## MusicSkills-3.5M 
+## The MusicSkills-3.5M Dataset 
 The composition of MusicSkills-3.5M is shown in the table below. The dataset includes four types of tasks that span diverse music knowledge and reasoning skills.
 The json metadata can be downloaded from [here](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M). 
 
