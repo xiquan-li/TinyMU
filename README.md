@@ -15,7 +15,7 @@ with strong understanding and reasoning abilities. It achieves 82% of SOTA LALMâ
   <img src="resource/Logo.png" alt="" width="700">
 </div>
 
-## Environment setup: 
+## Environment setup
 ```
 conda create --name tinymu python=3.11
 conda activate tinymu
