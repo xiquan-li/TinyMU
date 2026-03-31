@@ -36,7 +36,7 @@ The composition of MusicSkills-3.5M is shown in the table below. The dataset inc
 The json metadata can be downloaded from [here](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M). 
 
 <div align="center">
-  <img src="resource/MusicSkills-3.5M-stats.png" alt="" width="500">
+  <img src="resource/MusicSkills-3.5M-stats.png" alt="" width="600">
 </div>
 
 The format of the dataset is a JSON file of a list of dicts: 
@@ -60,7 +60,6 @@ Where
 - `task` specifies the task type for this sample
 
 ## Training
-### Preparation
 Before training, make sure all the checkpoints from [here](https://huggingface.co/AndreasXi/TinyMU) are in `./ckpt/`.
 
 For data preparation, please organize your dataset following the [MusicSkills](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M) JSON format. Each sample should contain at least the five keys mentioned above.
@@ -68,12 +67,10 @@ For data preparation, please organize your dataset following the [MusicSkills](h
 After the data is prepared, we need to setup the training configuration file. An example is provided at `src/config/train_tinymu.yaml`. 
 Make sure that each entry in `train_audio_dirs` matches the corresponding JSON file in `train_json_files`: specifically, the *i*-th directory in `train_audio_dirs` should contain all `.wav` files referenced by `train_json_files[i]`.
 
-### Model Training
-After everything is preared, run
+After everything is prepared, run the following script to train a model
 ```
 bash scripts/train_tinymu.sh
 ```
-to train a model. 
 
 ## Inference
 Once the training is done, run 
