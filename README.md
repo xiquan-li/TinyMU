@@ -1,6 +1,6 @@
 <div align="center">
 <p align="center">
-  <h1>TinyMU: A Compact Audio Language Model for Music Understanding</h1>
+  <h2>TinyMU: A Compact Audio Language Model for Music Understanding</h2>
 
   [![TinyMU Model](https://img.shields.io/badge/Model:TinyMU-yellow?logo=huggingface)](https://huggingface.co/AndreasXi/TinyMU)
   [![MusicSkills-3.5M Dataset](https://img.shields.io/badge/Dataset:MusicSkills-blue?logo=huggingface)](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M)
