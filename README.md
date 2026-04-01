@@ -2,8 +2,8 @@
 <p align="center">
   <h1>TinyMU: A Compact Audio-Language Model for Music Understanding</h1>
 
-  [![TinyMU Model](https://img.shields.io/badge/Model:TinyMU-yellow?logo=huggingface)](https://huggingface.co/AndreasXi/TinyMU)
-  [![MusicSkills-3.5M Dataset](https://img.shields.io/badge/Dataset:MusicSkills-blue?logo=huggingface)](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M)
+  [![TinyMU Model](https://img.shields.io/badge/Model-TinyMU-yellow?logo=huggingface)](https://huggingface.co/AndreasXi/TinyMU)
+  [![MusicSkills-3.5M Dataset](https://img.shields.io/badge/Dataset-MusicSkills-blue?logo=huggingface)](https://huggingface.co/datasets/AndreasXi/MusicSkills-3.5M)
 </p>
 </div>
 
@@ -12,7 +12,7 @@ TinyMU is a compact (229M) Music-Language Model
 with strong understanding and reasoning abilities. It achieves 82% of SOTA LALM’s performance on the MuChoMusic benchmark, while being 35x smaller. 
 
 <div align="center">
-  <img src="resource/Logo.png" alt="" width="700">
+  <img src="resource/Logo.png" alt="" width=>
 </div>
 
 ## Environment setup
