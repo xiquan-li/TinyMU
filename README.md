@@ -80,13 +80,13 @@ bash scripts/infer.sh
 to use the model to generate an output given a prompt and a music clip. You need to set `exp_dir` which is the experiment dir you set for training. This will automatically build a model from the config file and load the pre-trained ckpt to do the infer.
 
 
-## Evaluation 
-TODO 
+<!-- ## Evaluation 
+TODO  -->
 
 ## Acknowledgement
 The encoder of TinyMU is based on [MATPAC](https://github.com/aurianworld/matpac). 
 We also borrow parts of the inference code from [Mellow](https://github.com/soham97/mellow). 
  
-
+<!-- 
 ## Citation
-TODO
+TODO -->
